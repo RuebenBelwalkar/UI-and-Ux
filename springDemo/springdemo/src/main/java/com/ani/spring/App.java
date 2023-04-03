@@ -1,6 +1,7 @@
 package com.ani.spring;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.ani.spring.config.AppConfig;
 import com.ani.spring.util.FileChecker;
@@ -19,7 +20,7 @@ public final class App {
      * Says hello to the world.
      * @param args The arguments of the program.
      */
-    public static void main(String[] args) {
+   
         public static void normal() {
             FileUtil util = new FileUtil();
     
@@ -46,4 +47,6 @@ public final class App {
             withSpringXmlConfig();
         }
     }
-}
+
+   
+
