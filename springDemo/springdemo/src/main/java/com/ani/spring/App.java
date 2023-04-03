@@ -1,9 +1,12 @@
 package com.ani.spring;
+import java.util.Arrays;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.ani.spring.config.AppConfig;
+import com.ani.spring.excel.XlConfig;
 import com.ani.spring.util.FileChecker;
 import com.ani.spring.util.FileUtil;
 
@@ -41,10 +44,18 @@ public final class App {
             FileChecker checker = ctx.getBean(FileChecker.class);
             checker.checkFileValidity();
         }
+        public static void withSpringAnnotationConfig() {
+            System.out.println("🔥 Providing Dependencies With Annotation Config 🔥");
+            ApplicationContext ctx = new AnnotationConfigApplicationContext(XlConfig.class);
+    
+            String[] names = ctx.getBeanDefinitionNames();
+            System.out.println(Arrays.toString(names));
+        }
     
         public static void main(String[] args) {
-            withSpring();
-            withSpringXmlConfig();
+          //  withSpring();
+           // withSpringXmlConfig();
+           withSpringAnnotationConfig();
         }
     }
 
