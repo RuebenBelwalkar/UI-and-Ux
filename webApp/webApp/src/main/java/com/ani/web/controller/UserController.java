@@ -5,20 +5,26 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ani.web.entity.User;
+import com.ani.web.validation.UserValidator;
 
 @RequestMapping("/user")
 @Controller
 public class UserController {
+    @Autowired
+    private UserValidator validator;
 
     private final List<User> users = Arrays.asList(
         new User(11, "abc", "982275245", "aa@bb.com"),
@@ -41,14 +47,22 @@ public class UserController {
         return "user";
     }
     @PostMapping("/create") // http://localhost:8080/user/create
-    public ModelAndView createNewUser(@ModelAttribute("user") User user) {
+    public ModelAndView createNewUser(@ModelAttribute("user") User user , BindingResult result) {
+        validator.validate(user, result);
 
+        if(result.hasErrors()) {
+            return new ModelAndView("fail");
+        }
         ModelAndView mv = new ModelAndView("success");
         mv.addObject("usNm", user.getName());
         mv.addObject("mob", user.getMobile());
         mv.addObject("eml", user.getEmail());
         
         return mv;
+    }
+    @PostMapping("/createv2")
+    public String createUserV2(@RequestParam Integer id, @RequestParam String name, @RequestParam String email, @RequestParam String mobile) {
+        return "success";
     }
     @GetMapping("/show")
     public String showRegForm() {
