@@ -21,3 +21,17 @@ function calc(num1, num2, op) {
 }
 
 console.log(calc(3, 45, '+'))
+
+// anonymous functions
+const sqr1 = function (n) {
+    return n * n
+}
+
+// fat arrows
+const sqr2 = n => n * n
+
+console.log(sqr1(2))
+console.log(sqr2(2))
+const nm = 2
+console.log(`Square of ${nm} is ${sqr1(nm)}`)
+console.log('Square of '+ nm +' is ' + sqr2(nm))

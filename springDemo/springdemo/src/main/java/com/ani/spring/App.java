@@ -55,6 +55,9 @@ public final class App {
             System.out.println(manager);
              manager.configXL();
         }
+        public static void name() {
+            
+        }
     
         public static void main(String[] args) {
           //  withSpring();
