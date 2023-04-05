@@ -8,3 +8,5 @@ testing:
     name: abc
     strategy: agile
     bugcolor: red
+port: 
+ server: 12343    
