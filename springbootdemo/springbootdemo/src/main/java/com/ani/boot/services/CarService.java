@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.ani.boot.entity.Car;
 
-
+@PropertySource("other.properties")
 @PropertySource("myapp.yml")
 @Service
 public class CarService {
