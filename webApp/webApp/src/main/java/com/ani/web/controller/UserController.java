@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ani.web.entity.User;
+import com.ani.web.exception.UserNotFoundException;
+import com.ani.web.services.UserService;
 import com.ani.web.validation.UserValidator;
 
 @RequestMapping("/user")
@@ -33,6 +35,11 @@ public class UserController {
         new User(14, "xyz", "242536456" ,"mb@wt.com"),
         new User(15, "tuv", "16534126", "dd@ss.com")
     );
+    @GetMapping("/one/{id}")
+    @Autowired
+    private UserService service; // good code
+
+
 
     @GetMapping("/one/{id}")
     public String findUser(@PathVariable Integer id, Model model) {
@@ -41,7 +48,10 @@ public class UserController {
             .filter(us -> Objects.equals(us.getId(), id))
             .collect(Collectors.toList())
             .get(0);
-
+            
+            if(user == null) {
+                throw new UserNotFoundException("User  " + id +" Not Found");
+            }
         model.addAttribute("usNm", user.getName());
 
         return "user";
