@@ -1,5 +1,6 @@
 package com.ani.soap.endpoint;
 
+
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
@@ -12,7 +13,7 @@ import com.ani.soap.gen.GetCountryResponse;
 
 @Endpoint
 public class CountryEndpoint {
-
+    
     private static final String NAMESPACE_URI = "http://soap.ani.com/gen";
 
     @PayloadRoot(
