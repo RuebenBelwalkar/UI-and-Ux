@@ -1,5 +1,5 @@
 
-GET http://localhost:8080/weather/temp4
+GET http://localhost:8080/weather/temp1
 
 ###
 

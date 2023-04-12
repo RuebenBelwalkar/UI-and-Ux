@@ -1,5 +1,12 @@
 package com.ani.rest.service;
 
-public interface BankAccountService {
+import java.util.Collection;
 
+import com.ani.rest.dto.BankAccountDto;
+
+public interface BankAccountService {
+    
+    Integer createNewAccount(BankAccountDto account);
+
+    Collection<BankAccountDto> listAllAccounts();
 }
