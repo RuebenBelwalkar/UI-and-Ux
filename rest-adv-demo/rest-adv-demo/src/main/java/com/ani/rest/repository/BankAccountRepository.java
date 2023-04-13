@@ -9,5 +9,10 @@ public interface BankAccountRepository {
     BankAccount save(BankAccount account);
 
     Collection<BankAccount> findAll();
+
+    void update(BankAccount update);
+    
+    void delete(Long id);
 }
+
 

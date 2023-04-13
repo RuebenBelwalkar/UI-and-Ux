@@ -23,4 +23,19 @@ public class BankAccountRepositoryImpl implements BankAccountRepository {
     public Collection<BankAccount> findAll() {
        return accounts.values();
     }
+
+    @Override
+    public void  update(BankAccount update) {
+        accounts.put(update.getId(),update); 
+       
+    }
+
+    @Override
+    public void delete(Long id) {
+        accounts.remove(id);
+       
+    }
+
+   
+    
 }
