@@ -1,0 +1,7 @@
+
+spring:
+  datasource:
+    url: jdbc:mySQL://localhost:3306/trainingdb
+    username: root
+    password: root
+    
