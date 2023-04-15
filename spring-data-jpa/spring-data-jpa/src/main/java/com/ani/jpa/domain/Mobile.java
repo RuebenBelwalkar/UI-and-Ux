@@ -1,11 +1,17 @@
 package com.ani.jpa.domain;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 
 import lombok.Data;
 
+@NamedQuery(
+    name = "Mobile.findByNumberAndLat",
+    query = "select m from Mobile m where m.number = :mobile and m.latitude = :lat"
+)
 @Data
 @Entity
 public class Mobile {
