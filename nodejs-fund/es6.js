@@ -34,3 +34,22 @@ console.log(`1El ${e1}, 2El ${e2}`)
 
 const fn=(a,b)=> 10+(a+b)
 console.log(fn(1,1))
+
+const names = ['abc', 'pqr', 'lmn', 'xyz', 'zzz']
+const upAr = []
+for (let i = 0; i < names.length; i++) {
+    // console.log(names[i].toUpperCase())
+    upAr.push(names[i].toUpperCase())
+}
+console.log(upAr)
+
+const conArr = names.map(el => el.toUpperCase())
+console.log(conArr)
+
+if(names.length > 10 || names.length <=20) {
+    console.log(`Small Array`)
+}else if(names.length > 20 || names.length <= 30) {
+    console.log(`Medium Size Array`)
+} else {
+    console.log(`Big Array`)
+}
