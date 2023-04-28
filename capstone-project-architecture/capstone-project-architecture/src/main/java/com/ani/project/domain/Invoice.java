@@ -1,7 +1,5 @@
 package com.ani.project.domain;
 
-
-
 import java.time.LocalDate;
 
 import javax.persistence.Column;
