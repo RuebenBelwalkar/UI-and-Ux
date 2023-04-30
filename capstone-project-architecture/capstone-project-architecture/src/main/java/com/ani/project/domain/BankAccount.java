@@ -1,43 +1,32 @@
 package com.ani.project.domain;
 
-import java.time.LocalDate;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
+import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor()
-@ToString
+@AllArgsConstructor
 @Setter
 @Getter
 @Entity
-public class Invoice {
-    
-    @Id // primary key
+public class BankAccount {
+
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
     private Long id;
-    @Column(name = "client")
-    private String client;
-    @Column(name = "invDt")
-    private LocalDate invDt; // inv_dt
-    @Column(name = "amt")
-    private Double amt;   
-    @ManyToOne
+    private String acNum;
+    private String acNm;
+    private Double bal;
+
+    @OneToOne
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 }

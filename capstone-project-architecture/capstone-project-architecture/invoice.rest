@@ -35,3 +35,5 @@ PUT http://localhost:8080/invoice/ HTTP/1.1 content-type: application/json
     "amt" : 70000
 
 }
+### List All Customer Invoices 
+GET http://localhost:8080/invoice/customer/2

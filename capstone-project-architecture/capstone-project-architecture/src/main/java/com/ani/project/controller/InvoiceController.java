@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ani.project.dto.AppResponse;
+import com.ani.project.dto.InvoiceCustomerDto;
 import com.ani.project.dto.InvoiceDto;
 import com.ani.project.service.InvoiceService;
 
 import lombok.AllArgsConstructor;
 
-    
 @CrossOrigin
 @AllArgsConstructor
 @RequestMapping(value = "/invoice")
@@ -31,18 +31,35 @@ public class InvoiceController {
 
     private final InvoiceService service;
     
+    @CrossOrigin
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AppResponse<Integer>> createNewInvoice(@RequestBody InvoiceDto dto) {
 
-        Integer sts = service.createNewInvoice(dto);
+        final Integer sts = service.createNewInvoice(dto);
 
-        AppResponse<Integer> response = AppResponse.<Integer>builder()
+        final AppResponse<Integer> response = AppResponse.<Integer>builder()
                                                     .sts("success")
                                                     .msg("Invoice Created Successfully")
                                                     .bd(sts)
                                                     .build();
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+
+
+    @CrossOrigin
+    @PostMapping(value = "/customer", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AppResponse<Integer>> createNewCustomerInvoice(@RequestBody InvoiceCustomerDto dto) {
+
+        final Integer sts = service.createNewInvoice(dto);
+
+        final AppResponse<Integer> response = AppResponse.<Integer>builder()
+                                                    .sts("success")
+                                                    .msg("Invoice Created Successfully")
+                                                    .bd(sts)
+                                                    .build();
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
 
     @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AppResponse<List<InvoiceDto>>> allInvoices() {
@@ -56,6 +73,7 @@ public class InvoiceController {
 
         return ResponseEntity.ok().body(response);
     }
+
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AppResponse<Integer>> deleteInvoice(@PathVariable Long id) {
 
@@ -69,6 +87,33 @@ public class InvoiceController {
 
         return ResponseEntity.status(200).body(response);
     }
+
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE )
+    public ResponseEntity<AppResponse<InvoiceDto>> getInvoiceById(@PathVariable Long id) {
+
+        final InvoiceDto dto = service.fetchInvoiceDetails(id);
+
+        final AppResponse<InvoiceDto> response = AppResponse.<InvoiceDto>builder()
+                                                        .sts("success")
+                                                        .msg("Invoice Details")
+                                                        .bd(dto)
+                                                        .build();
+        return ResponseEntity.ok().body(response);
+    }
+
+    @GetMapping(value = "/customer/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AppResponse<List<InvoiceDto>>> allCustomerInvoices(@PathVariable Long id) {
+        List<InvoiceDto> invoices = service.allCustomerInvoices(id);
+
+        AppResponse<List<InvoiceDto>> response = AppResponse.<List<InvoiceDto>>builder()
+                                                            .sts("success")
+                                                            .msg("Customer Invoices")
+                                                            .bd(invoices)
+                                                            .build();
+
+        return ResponseEntity.ok().body(response);
+    }
+
     @CrossOrigin
     @PutMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AppResponse<Integer>> updateNewInvoice(@RequestBody InvoiceDto dto) {
@@ -84,5 +129,3 @@ public class InvoiceController {
         return ResponseEntity.ok().body(response);
     }
 }
-
-
