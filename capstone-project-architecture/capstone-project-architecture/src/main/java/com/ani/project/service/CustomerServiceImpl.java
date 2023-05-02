@@ -40,7 +40,7 @@ public class CustomerServiceImpl implements CustomerService {
     public List<CustomerListDto> findCustomers() {
         return customerRepository.findAll()
                             .stream()
-                            .map(domain -> new CustomerListDto(domain.getId(), domain.getName(), domain.getMobile()))
+                            .map(domain -> new CustomerListDto(doma))
                             .collect(Collectors.toList());
     }
 

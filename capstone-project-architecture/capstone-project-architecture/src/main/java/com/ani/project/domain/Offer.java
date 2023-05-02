@@ -32,11 +32,5 @@ public class Offer {
     private Integer discount;
     private Boolean isActive;
 
-    @ManyToMany
-    @JoinTable(
-            name = "customer_offer", 
-            joinColumns = @JoinColumn(name = "offer_id"), 
-            inverseJoinColumns = @JoinColumn(name = "customer_id")
-    )
-    private List<Customer> customers;
+   
 }
